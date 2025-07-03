@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Trabalho JavaScript</title>
+  <title>Trabalho JavaScript - Tartarugas</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -96,7 +96,7 @@
       <p id="hora">00:00:00</p>
       <p id="data">Carregando data...</p>
       <button onclick="alternarFormato()">Alternar Formato 12/24h</button>
-      <button onclick="pausarRelogio()">Pausar</button>
+      <button onclick="pausarRelogio()" id="btnPausar">Pausar</button>
     </div>
 
     <h2>Galeria de Tartarugas</h2>
@@ -125,6 +125,7 @@
     // relógio
     let relogioInterval = null;
     let formato24h = true;
+    let relogioPausado = false;
 
     function atualizarHora() {
       const agora = new Date();
@@ -153,7 +154,15 @@
     }
 
     function pausarRelogio() {
-      clearInterval(relogioInterval);
+      const btn = document.getElementById("btnPausar");
+      if (!relogioPausado) {
+        clearInterval(relogioInterval);
+        btn.textContent = "Despausar";
+      } else {
+        iniciarRelogio();
+        btn.textContent = "Pausar";
+      }
+      relogioPausado = !relogioPausado;
     }
 
     function alternarFormato() {
