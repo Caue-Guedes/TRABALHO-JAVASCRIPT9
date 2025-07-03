@@ -70,7 +70,7 @@
 </head>
 <body>
   <div class="container">
-    
+
     <h2>Estilo Dinâmico</h2>
     <p>Experimente diferentes estilos para este texto com os controles abaixo.</p>
     <div>
@@ -99,13 +99,13 @@
       <button onclick="pausarRelogio()">Pausar</button>
     </div>
 
-    <h2>Galeria de Patos</h2>
+    <h2>Galeria de Tartarugas</h2>
     <div class="gallery">
-      <img id="patoImagem" src="imagens/pato1.jpg" alt="Pato nadando em um lago">
-      <div class="caption" id="patoDescricao">Pato em um lago tranquilo (1/4)</div>
+      <img id="tartarugaImagem" src="https://conexaoplaneta.com.br/wp-content/uploads/2020/06/cientistas-drones-contagem-bercario-tartarugas-verdes-2-conexao-planeta.jpg" alt="Tartaruga filhote">
+      <div class="caption" id="tartarugaDescricao">Tartaruga filhote (1/4)</div>
       <div class="gallery-controls">
-        <button onclick="anteriorImagem()">← Anterior</button>
-        <button onclick="proximaImagem()">Próxima →</button>
+        <button onclick="anteriorTartaruga()">← Anterior</button>
+        <button onclick="proximaTartaruga()">Próxima →</button>
       </div>
     </div>
   </div>
@@ -162,33 +162,45 @@
 
     iniciarRelogio();
 
-    // galeria
-    const imagens = [
-      { src: "imagens/pato1.jpg", descricao: "Pato em um lago tranquilo (1/4)" },
-      { src: "imagens/pato2.jpg", descricao: "Pato voando sobre o campo (2/4)" },
-      { src: "imagens/pato3.jpg", descricao: "Pato com filhotes na grama (3/4)" },
-      { src: "imagens/pato4.jpg", descricao: "Pato observando o horizonte (4/4)" }
+    // galeria de tartarugas
+    const tartarugas = [
+      {
+        src: "https://conexaoplaneta.com.br/wp-content/uploads/2020/06/cientistas-drones-contagem-bercario-tartarugas-verdes-2-conexao-planeta.jpg",
+        descricao: "Tartaruga filhote (1/4)"
+      },
+      {
+        src: "https://i.ytimg.com/vi/01LF_eTQ6L0/maxresdefault.jpg",
+        descricao: "Tartaruga nadando (2/4)"
+      },
+      {
+        src: "https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2014/03/14/ilhacienciastartarugabbc.jpg",
+        descricao: "Tartaruga de 172 anos (3/4)"
+      },
+      {
+        src: "https://img.freepik.com/fotos-premium/uma-tartaruga-sentada-em-cima-de-uma-tartaruga-em-cima-de-outra-tartaruga_926199-4174193.jpg?w=360",
+        descricao: "Três tartarugas empilhadas (4/4)"
+      }
     ];
 
-    let indiceAtual = 0;
+    let indiceTartaruga = 0;
 
-    function mostrarImagem() {
-      const imagem = imagens[indiceAtual];
-      document.getElementById("patoImagem").src = imagem.src;
-      document.getElementById("patoDescricao").textContent = imagem.descricao;
+    function mostrarTartaruga() {
+      const atual = tartarugas[indiceTartaruga];
+      document.getElementById("tartarugaImagem").src = atual.src;
+      document.getElementById("tartarugaDescricao").textContent = atual.descricao;
     }
 
-    function proximaImagem() {
-      indiceAtual = (indiceAtual + 1) % imagens.length;
-      mostrarImagem();
+    function proximaTartaruga() {
+      indiceTartaruga = (indiceTartaruga + 1) % tartarugas.length;
+      mostrarTartaruga();
     }
 
-    function anteriorImagem() {
-      indiceAtual = (indiceAtual - 1 + imagens.length) % imagens.length;
-      mostrarImagem();
+    function anteriorTartaruga() {
+      indiceTartaruga = (indiceTartaruga - 1 + tartarugas.length) % tartarugas.length;
+      mostrarTartaruga();
     }
 
-    mostrarImagem();
+    mostrarTartaruga();
   </script>
 </body>
 </html>
