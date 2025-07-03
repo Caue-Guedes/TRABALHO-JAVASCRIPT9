@@ -1,80 +1,194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Demonstração de JavaScript moderno com recursos interativos">
-    <title>JS Moderno - Demonstração Interativa</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Trabalho JavaScript</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    label, select, input[type="color"] {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .gallery img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .gallery-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .caption {
+      text-align: center;
+      margin-top: 5px;
+      font-style: italic;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-    <main class="container">
-        <header class="header">
-            <h1>JS Moderno <span class="version" aria-label="Versão atual">ES6+</span></h1>
-            <p class="subtitle">Demonstração de recursos modernos de JavaScript</p>
-        </header>
-        
-        <section class="card" aria-labelledby="dynamic-style-heading">
-            <h2 id="dynamic-style-heading">Estilo Dinâmico</h2>
-            <div class="text-display-container">
-                <p id="text-display" aria-live="polite">Experimente diferentes estilos para este texto com os controles abaixo.</p>
-            </div>
-            
-            <div class="controls">
-                <div class="control-group">
-                    <label for="font-select">Fonte:</label>
-                    <select id="font-select" aria-label="Seletor de fonte">
-                        <option value="'Inter', sans-serif">Padrão (Inter)</option>
-                        <option value="'Courier New', monospace">Monospace</option>
-                        <option value="'Georgia', serif">Serif</option>
-                        <option value="'Comic Sans MS', cursive">Cursiva</option>
-                    </select>
-                </div>
-                
-                <div class="control-group">
-                    <label for="color-picker">Cor do texto:</label>
-                    <input type="color" id="color-picker" value="#333333" aria-label="Seletor de cor">
-                </div>
-                
-                <div class="control-group">
-                    <label for="bg-color-picker">Cor de fundo:</label>
-                    <input type="color" id="bg-color-picker" value="#ffffff" aria-label="Seletor de cor de fundo">
-                </div>
-                
-                <button id="apply-btn" class="button">Aplicar Estilo</button>
-                <button id="reset-styles" class="button secondary">Resetar</button>
-            </div>
-        </section>
-        
-        <section class="card" aria-labelledby="time-date-heading">
-            <h2 id="time-date-heading">Tempo & Data</h2>
-            <div class="time-display" aria-live="polite">
-                <div id="time" role="timer">--:--:--</div>
-                <div id="date">--- --, ----</div>
-            </div>
-            <div class="button-group">
-                <button id="format-toggle" class="button">Alternar Formato 12/24h</button>
-                <button id="pause-clock" class="button secondary">Pausar</button>
-            </div>
-        </section>
+  <div class="container">
+    
+    <h2>Estilo Dinâmico</h2>
+    <p>Experimente diferentes estilos para este texto com os controles abaixo.</p>
+    <div>
+      <label for="fontSelect">Fonte:</label>
+      <select id="fontSelect">
+        <option value="Inter">Padrão (Inter)</option>
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Courier New">Courier New</option>
+      </select>
+      <br>
+      <label for="textColor">Cor do texto:</label>
+      <input type="color" id="textColor">
+      <label for="bgColor">Cor de fundo:</label>
+      <input type="color" id="bgColor">
+      <br><br>
+      <button onclick="aplicarEstilo()">Aplicar Estilo</button>
+      <button onclick="resetarEstilo()">Resetar</button>
+    </div>
 
-        <section class="card" aria-labelledby="gallery-heading">
-            <h2 id="gallery-heading">Galeria de Patos</h2>
-            <figure class="image-container">
-                <img id="gallery-image" src="https://images.unsplash.com/photo-1551942801-8a6e9c0e9b0f?w=600&auto=format" 
-                     alt="Pato nadando em um lago" loading="lazy">
-                <figcaption id="image-caption">Imagem 1 de 4</figcaption>
-            </figure>
-            <div class="button-group">
-                <button id="prev-image" class="button secondary">&larr; Anterior</button>
-                <button id="change-image" class="button">Próxima &rarr;</button>
-            </div>
-        </section>
-    </main>
+    <h2>Tempo & Data</h2>
+    <div>
+      <p id="hora">00:00:00</p>
+      <p id="data">Carregando data...</p>
+      <button onclick="alternarFormato()">Alternar Formato 12/24h</button>
+      <button onclick="pausarRelogio()">Pausar</button>
+    </div>
 
-    <script src="script.js" defer></script>
+    <h2>Galeria de Patos</h2>
+    <div class="gallery">
+      <img id="patoImagem" src="imagens/pato1.jpg" alt="Pato nadando em um lago">
+      <div class="caption" id="patoDescricao">Pato em um lago tranquilo (1/4)</div>
+      <div class="gallery-controls">
+        <button onclick="anteriorImagem()">← Anterior</button>
+        <button onclick="proximaImagem()">Próxima →</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // estilo dinâmico
+    const aplicarEstilo = () => {
+      document.body.style.fontFamily = document.getElementById("fontSelect").value;
+      document.body.style.color = document.getElementById("textColor").value;
+      document.body.style.backgroundColor = document.getElementById("bgColor").value;
+    };
+
+    const resetarEstilo = () => {
+      document.body.style = null;
+    };
+
+    // relógio
+    let relogioInterval = null;
+    let formato24h = true;
+
+    function atualizarHora() {
+      const agora = new Date();
+      let horas = agora.getHours();
+      let minutos = agora.getMinutes().toString().padStart(2, '0');
+      let segundos = agora.getSeconds().toString().padStart(2, '0');
+
+      let horaStr = "";
+      if (formato24h) {
+        horaStr = `${horas}:${minutos}:${segundos}`;
+      } else {
+        let ampm = horas >= 12 ? "PM" : "AM";
+        horas = horas % 12 || 12;
+        horaStr = `${horas}:${minutos}:${segundos} ${ampm}`;
+      }
+
+      document.getElementById("hora").textContent = horaStr;
+
+      const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById("data").textContent = agora.toLocaleDateString('pt-BR', opcoesData);
+    }
+
+    function iniciarRelogio() {
+      atualizarHora();
+      relogioInterval = setInterval(atualizarHora, 1000);
+    }
+
+    function pausarRelogio() {
+      clearInterval(relogioInterval);
+    }
+
+    function alternarFormato() {
+      formato24h = !formato24h;
+    }
+
+    iniciarRelogio();
+
+    // galeria
+    const imagens = [
+      { src: "imagens/pato1.jpg", descricao: "Pato em um lago tranquilo (1/4)" },
+      { src: "imagens/pato2.jpg", descricao: "Pato voando sobre o campo (2/4)" },
+      { src: "imagens/pato3.jpg", descricao: "Pato com filhotes na grama (3/4)" },
+      { src: "imagens/pato4.jpg", descricao: "Pato observando o horizonte (4/4)" }
+    ];
+
+    let indiceAtual = 0;
+
+    function mostrarImagem() {
+      const imagem = imagens[indiceAtual];
+      document.getElementById("patoImagem").src = imagem.src;
+      document.getElementById("patoDescricao").textContent = imagem.descricao;
+    }
+
+    function proximaImagem() {
+      indiceAtual = (indiceAtual + 1) % imagens.length;
+      mostrarImagem();
+    }
+
+    function anteriorImagem() {
+      indiceAtual = (indiceAtual - 1 + imagens.length) % imagens.length;
+      mostrarImagem();
+    }
+
+    mostrarImagem();
+  </script>
 </body>
 </html>
